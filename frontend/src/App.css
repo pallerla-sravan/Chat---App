@@ -1,0 +1,25 @@
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #2d3748; /* Dark background for scrollbar track */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #4a5568; /* Color of the scrollbar thumb */
+    border-radius: 10px;        /* Round corners for the scrollbar thumb */
+    border: 2px solid #2d3748;  /* Space between thumb and track */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #718096;  /* Darker color on hover */
+  }
+  
+  /* For Firefox */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #4a5568 #2d3748;
+  }
+  
