@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import '../App.css';
 import axios from 'axios';
 
-const socket = io("http://localhost:3000");
+const socket = io("https://chat-app-backend-9fbx.onrender.com");
 
 function Chat() {
   const [mess, setMess] = useState("");
@@ -16,7 +16,7 @@ function Chat() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/auth/users');
+        const response = await axios.get('https://chat-app-backend-9fbx.onrender.com/api/auth/users');
         const filterUsers = response.data.users.filter(user => user.username !== currentUser);
         setUsers(filterUsers);
       } catch (error) {
