@@ -66,7 +66,7 @@ const SignUp = ({ onSuccess }) => {
                     <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
+                        className="absolute inset-y-0 right-0 flex items-center px-3 mt-6 text-gray-500"
                     >
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
