@@ -9,7 +9,7 @@ const Login = () => {
 
     const handleSuccess = (message) => {
         setSuccessMessage(message);
-        setTimeout(() => setSuccessMessage(''), 3000);  // Remove success message after 3 seconds
+        setTimeout(() => setSuccessMessage(''), 3000);  
     };
 
     return (

@@ -9,6 +9,7 @@ const { createServer } = require('http');
 require('dotenv').config();
 
 const mongoURL  = process.env.MONGODB_URI
+const port  = process.env.PORT || 3000
 
 const app = express();
 app.use(express.json());
@@ -35,15 +36,28 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
 
-  socket.on('joinRoom', (roomId) => {
+  socket.on('sendChatRequest', (data) => {
+    const { sender, receiver } = data;
+    const roomId = [sender, receiver].sort().join('_');
     socket.join(roomId);
-    console.log(`Socket ${socket.id} joined room ${roomId}`);
+    console.log(`${sender} sent a chat request to ${receiver}`);
+    io.emit('receiveChatRequest', data);
+  });
+
+  socket.on('acceptChatRequest', (data) => {
+    const { sender, receiver } = data;
+    const roomId = [sender, receiver].sort().join('_');
+    socket.join(roomId);
+    
+    io.emit('chatRequestAccepted', { roomId, sender, receiver });
+    console.log(`${sender} and ${receiver} joined room ${roomId}`);
   });
   
   socket.on('sendmessage', (data) => {
     io.to(data.roomId).emit('receiveMessage',data);
+    console.log(`Message sent to room ${data.roomId}: ${data.mess}`);
     
-    console.log(`Message sent to room `,data);
+    console.log(`Message sent to room `,data); 
    });
 
   socket.on('disconnect', () => {
@@ -51,10 +65,49 @@ io.on('connection', (socket) => {
   });
 });
 
-app.get("/", (req, res) => {
-  res.send("This is Sravan's chat application");
-});
 
-server.listen(3000, () => {
+server.listen(port, () => {
   console.log("Server is running on port 3000");
 }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

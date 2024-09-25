@@ -10,7 +10,7 @@ const SignUp = ({ onSuccess }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/api/auth/signup', {
+            const response = await fetch('https://chat-app-backend-9fbx.onrender.com/api/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email,username, password }),
@@ -66,7 +66,7 @@ const SignUp = ({ onSuccess }) => {
                     <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
+                        className="absolute inset-y-0 right-0 flex items-center px-3 mt-6 text-gray-500"
                     >
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
